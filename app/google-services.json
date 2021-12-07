@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "598202699916",
+    "firebase_url": "https://chatonkotlin-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "chatonkotlin",
+    "storage_bucket": "chatonkotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598202699916:android:e35ccb766ad10cd94caba9",
+        "android_client_info": {
+          "package_name": "com.example.chatonkotlinfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598202699916-tg936hrdismjl3lpvjnv6m2mfskk0bdm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASPoy2cnkcsaNsUfenyJZicVbPO1q339Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598202699916-tg936hrdismjl3lpvjnv6m2mfskk0bdm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
