@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         dRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.apply {
-                    //todo сделать в append имя по заданному (вместо Login)
+                    //todo сделать в append имя по заданному (вместо Login),
+                    // а также отправку одинаковых сообщений(сейчас обязательно должны отличаться)
                     messageTextView.append("\n ")
                     messageTextView.append("Login: ${snapshot.value.toString()}")
                 }
