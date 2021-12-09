@@ -42,6 +42,7 @@ class SignInActivity : AppCompatActivity() {
         binding.buttonSignIn.setOnClickListener{
             signInWithGoogle()
         }
+        checkAuthState()
     }
 
     //1.1 создается клиент из списка аккаунтов , которые нужно выбрать(фронт)
@@ -66,10 +67,19 @@ class SignInActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
+                checkAuthState()
                 Log.d("MyLog", "Google sign done")
             } else {
                 Log.d("MyLog", "Google sign error")
             }
         }
     }
+    //метод открытия другого активити если авторизовался
+    private fun checkAuthState(){
+        if(auth.currentUser != null){
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
+    }
+
 }
