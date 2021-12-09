@@ -4,10 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.chatonkotlinfirebase.databinding.ActivitySignInBinding
-import com.google.android.gms.auth.api.credentials.IdToken
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -42,6 +43,12 @@ class SignInActivity : AppCompatActivity() {
         binding.buttonSignIn.setOnClickListener{
             signInWithGoogle()
         }
+        //
+        binding.button.setOnClickListener{
+           //todo написать авторизацию другим способом
+
+        }
+        //
         checkAuthState()
     }
 
@@ -81,4 +88,25 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+    //инициализация actionbar
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.sign_in_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.exit){
+            Log.d("MyLog", "кнопка EXIT работает")
+            finish()
+        }
+        if (item.itemId == R.id.settings){
+            val i = Intent(this, SettingsActivity::class.java)
+            startActivity(i)
+        }
+        if (item.itemId == R.id.aboutUs){
+            val i = Intent(this, AboutUsActivity::class.java)
+            startActivity(i)
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
