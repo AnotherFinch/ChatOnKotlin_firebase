@@ -46,7 +46,6 @@ class SignInActivity : AppCompatActivity() {
     }
 
     //1.1 создается клиент из списка аккаунтов , которые нужно выбрать(фронт)
-    //если default_web_client_id красный, то это ок, похоже на бак в гугле
     private fun getClient(): GoogleSignInClient {
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
