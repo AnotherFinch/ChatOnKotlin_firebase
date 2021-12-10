@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ChatOnKotlin(firebase)</string>
+    <string name="app_name">Corgi Chat</string>
     <string name="send">Send</string>
     <string name="message">Message</string>
     <string name="google_sign_in">Google Sign in</string>

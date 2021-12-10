@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatonkotlinfirebase.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -19,24 +20,33 @@ import com.squareup.picasso.Picasso
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var auth: FirebaseAuth
+    lateinit var adapter: UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         auth = Firebase.auth
         setUpActionBar()
-
         setContentView(binding.root)
         val database = Firebase.database
         val myRef = database.getReference("message")
         //отвечает за отправку текса в fireBase
         binding.buttonSend.setOnClickListener {
-            myRef.setValue(binding.edMessage.text.toString())
+            myRef.child(myRef.push().key ?: "Отсебятина")
+                .setValue(User(auth.currentUser?.displayName, binding.edMessage.text.toString()))
         }
         //регистрация слушателя changeListener в firebase на узле message
         changeListener(myRef)
+        initRecycleView()
 
     }
+
+    private fun initRecycleView() = with(binding) {
+        adapter = UserAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+        recyclerView.adapter = adapter
+    }
+
 
     //инициализация меню экнш бара
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     //нажатие на кнопку меню sign_out
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.sign_out){
+        if (item.itemId == R.id.sign_out) {
             auth.signOut()
             finish()
         }
@@ -57,14 +67,13 @@ class MainActivity : AppCompatActivity() {
     private fun changeListener(dRef: DatabaseReference) {
         dRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                binding.apply {
-                    //todo сделать в append имя по заданному (вместо Login),
-                    // а также отправку одинаковых сообщений(сейчас обязательно должны отличаться)
-                    messageTextView.append("\n ")
-                    messageTextView.append(auth.currentUser?.displayName + ": ${snapshot.value.toString()}")
+                val list = ArrayList<User>()
+                for (s in snapshot.children) {
+                    val user = s.getValue(User::class.java)
+                    if (user != null) list.add(user)
                 }
+                adapter.submitList(list)
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -83,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             val bitmap = Picasso.get().load(auth.currentUser?.photoUrl).get()
             val drawableIcon = BitmapDrawable(resources, bitmap)
             //запуск на основном потоке
-            runOnUiThread{
+            runOnUiThread {
                 actionBar?.setDisplayHomeAsUpEnabled(true)
                 actionBar?.setHomeAsUpIndicator(drawableIcon)
                 actionBar?.title = auth.currentUser?.displayName
