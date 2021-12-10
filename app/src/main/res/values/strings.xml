@@ -3,4 +3,8 @@
     <string name="send">Send</string>
     <string name="message">Message</string>
     <string name="google_sign_in">Google Sign in</string>
+    <string name="sign_out">Sign out</string>
+    <string name="exit">Exit</string>
+    <string name="aboutUs">About us</string>
+    <string name="settings">Settings</string>
 </resources>
