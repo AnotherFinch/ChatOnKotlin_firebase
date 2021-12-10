@@ -14,9 +14,6 @@ class AboutUsActivity : AppCompatActivity() {
         setUpActionBar()
     }
 
-
-
-
     //отвечает за кнопку возврата в экшн баре
     private fun setUpActionBar() {
         val actionBar = supportActionBar
