@@ -2,11 +2,12 @@ package com.example.chatonkotlinfirebase
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatonkotlinfirebase.databinding.UserListItemBinding
+import com.google.firebase.auth.FirebaseAuth
 
 
 //класс для работы с recycleView и заполнением его item (итемами)
@@ -17,7 +18,23 @@ class UserAdapter : ListAdapter<User, UserAdapter.ItemHolder>(ItemComparator()) 
         fun bind(user : User) = with(binding){
             message.text = user.message
             userName.text = user.name
+            val userName : String = user?.name.toString()
+                    val userRealName : String = FirebaseAuth.getInstance().currentUser?.displayName.toString()
+                    if (userRealName!=userName){
+                        //todo найти подходящий цвет или понять как передавать значение int
+                            //todo понять как убрать текст вправо
+                                //todo сейчас при переносе слов на другу строку меняется отступ у сообщения
+                            //binding.message.setTextColor(16711936)
+
+                       // binding.message.setTextColor(16711936)
+                        //binding.cardView.background.setTint(2813300)
+                  //      binding.cardView.setBackgroundColor(2813300)
+                        //binding.cardView.setPadding(10,10,10,10)
+                     //   binding.constraintLayout.setBackgroundColor(2813300)
+                      //  binding.listLinearLayout.setBackgroundColor(2813300)
+                    }
         }
+
         companion object{
             fun create(parent : ViewGroup) : ItemHolder{
                 return ItemHolder(UserListItemBinding
@@ -43,4 +60,6 @@ class UserAdapter : ListAdapter<User, UserAdapter.ItemHolder>(ItemComparator()) 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
+
 }

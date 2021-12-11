@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatonkotlinfirebase.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
             myRef.child(myRef.push().key ?: "Отсебятина")
                 .setValue(User(auth.currentUser?.displayName, binding.edMessage.text.toString()))
         }
-        //регистрация слушателя changeListener в firebase на узле message
         changeListener(myRef)
         initRecycleView()
     }
