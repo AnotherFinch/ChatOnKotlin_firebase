@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                 adapter.submitList(list)
                 //перелистывание вниз
                 //todo разобраться как перелистывать , когда выезжает клавиатура
+                //todo  при нуле ловит ошибку
                 if (list.size != 0){
                     binding.recyclerView.smoothScrollToPosition(
                         binding.recyclerView
