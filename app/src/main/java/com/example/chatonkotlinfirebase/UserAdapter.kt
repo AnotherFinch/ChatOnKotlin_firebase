@@ -2,7 +2,6 @@ package com.example.chatonkotlinfirebase
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -24,14 +23,7 @@ class UserAdapter : ListAdapter<User, UserAdapter.ItemHolder>(ItemComparator()) 
                         //todo найти подходящий цвет или понять как передавать значение int
                             //todo понять как убрать текст вправо
                                 //todo сейчас при переносе слов на другу строку меняется отступ у сообщения
-                            //binding.message.setTextColor(16711936)
-
-                       // binding.message.setTextColor(16711936)
-                        //binding.cardView.background.setTint(2813300)
-                  //      binding.cardView.setBackgroundColor(2813300)
-                        //binding.cardView.setPadding(10,10,10,10)
-                     //   binding.constraintLayout.setBackgroundColor(2813300)
-                      //  binding.listLinearLayout.setBackgroundColor(2813300)
+                            binding.listLinearLayout.setBackgroundColor(0x79FF0266)
                     }
         }
 
