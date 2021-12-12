@@ -1,10 +1,14 @@
 package com.example.chatonkotlinfirebase
 
+import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatonkotlinfirebase.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -30,15 +34,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val database = Firebase.database
         val myRef = database.getReference("message")
-        //отвечает за отправку текса в fireBase
+        //отвечает за отправку тектса в fireBase
         binding.buttonSend.setOnClickListener {
             myRef.child(myRef.push().key ?: "Отсебятина")
                 .setValue(User(auth.currentUser?.displayName, binding.edMessage.text.toString()))
         }
-        //регистрация слушателя changeListener в firebase на узле message
         changeListener(myRef)
         initRecycleView()
-
     }
 
     private fun initRecycleView() = with(binding) {
@@ -73,6 +75,17 @@ class MainActivity : AppCompatActivity() {
                     if (user != null) list.add(user)
                 }
                 adapter.submitList(list)
+                //перелистывание вниз
+                //todo разобраться как перелистывать , когда выезжает клавиатура
+                //todo  при нуле ловит ошибку
+                if (list.size != 0){
+                    binding.recyclerView.smoothScrollToPosition(
+                        binding.recyclerView
+                            .adapter?.itemCount!!.toInt() - 1
+                    )
+                }
+                hideMyKeyboard()
+                deleteMessageText()
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -80,6 +93,18 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+
+    //прячет клавиатуру после нажатия
+    private fun hideMyKeyboard(){
+        val view = this.currentFocus
+        if (view != null) {
+            val hideMy = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hideMy.hideSoftInputFromWindow(view.windowToken, 0)
+        } else {
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+        }
+    }
+
 
     //определение эшнбара (меню в верхней части, которое может иметь иконку, кнопки наза, выход и прочее
     private fun setUpActionBar() {
@@ -100,5 +125,8 @@ class MainActivity : AppCompatActivity() {
         }.start()
 
     }
-
+    //функция удаления текста после нажатия
+    private fun deleteMessageText(){
+        binding.edMessage.setText("")
+    }
 }
