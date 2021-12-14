@@ -1,4 +1,4 @@
-package com.example.chatonkotlinfirebase
+package com.example.chatonkotlinfirebase.activity
 
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
@@ -8,8 +8,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.chatonkotlinfirebase.R
+import com.example.chatonkotlinfirebase.data.User
+import com.example.chatonkotlinfirebase.adapter.UserAdapter
 import com.example.chatonkotlinfirebase.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -114,12 +116,14 @@ class MainActivity : AppCompatActivity() {
         // все элементы должны быть на основном потоке
         Thread {
             // ссылка на картинку из авторизации
-            val bitmap = Picasso.get().load(auth.currentUser?.photoUrl).get()
+           val bitmap = Picasso.get().load(auth.currentUser?.photoUrl).get()
+            println("////")
+            println(auth.currentUser?.photoUrl)
             val drawableIcon = BitmapDrawable(resources, bitmap)
             //запуск на основном потоке
             runOnUiThread {
                 actionBar?.setDisplayHomeAsUpEnabled(true)
-                actionBar?.setHomeAsUpIndicator(drawableIcon)
+               actionBar?.setHomeAsUpIndicator(drawableIcon)
                 actionBar?.title = auth.currentUser?.displayName
             }
         }.start()

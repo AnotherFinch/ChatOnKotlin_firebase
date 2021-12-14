@@ -1,4 +1,4 @@
-package com.example.chatonkotlinfirebase
+package com.example.chatonkotlinfirebase.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.chatonkotlinfirebase.R
 import com.example.chatonkotlinfirebase.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -44,6 +45,8 @@ class SignInActivity : AppCompatActivity() {
         }
         //
         binding.registrationButton.setOnClickListener{
+            val i = Intent(this, MainActivity2::class.java)
+            startActivity(i)
            //todo написать авторизацию другим способом
 
         }

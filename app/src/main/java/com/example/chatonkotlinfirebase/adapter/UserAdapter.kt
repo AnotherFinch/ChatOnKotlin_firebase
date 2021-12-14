@@ -1,10 +1,11 @@
-package com.example.chatonkotlinfirebase
+package com.example.chatonkotlinfirebase.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.chatonkotlinfirebase.data.User
 import com.example.chatonkotlinfirebase.databinding.UserListItemBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -28,9 +29,8 @@ class UserAdapter : ListAdapter<User, UserAdapter.ItemHolder>(ItemComparator()) 
         }
 
         companion object{
-            fun create(parent : ViewGroup) : ItemHolder{
-                return ItemHolder(UserListItemBinding
-                    .inflate(LayoutInflater.from(parent.context), parent, false))
+            fun create(parent : ViewGroup) : ItemHolder {
+                return ItemHolder(UserListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
         }
     }

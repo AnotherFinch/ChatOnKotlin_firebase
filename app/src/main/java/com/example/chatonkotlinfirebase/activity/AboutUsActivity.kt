@@ -1,27 +1,24 @@
-package com.example.chatonkotlinfirebase
+package com.example.chatonkotlinfirebase.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.chatonkotlinfirebase.databinding.ActivityMainBinding
-import com.example.chatonkotlinfirebase.databinding.ActivitySettingsBinding
-import com.example.chatonkotlinfirebase.databinding.ActivitySignInBinding
+import com.example.chatonkotlinfirebase.databinding.ActivityAboutUsBinding
 
-class SettingsActivity : AppCompatActivity() {
-    lateinit var binding: ActivitySettingsBinding
+class AboutUsActivity : AppCompatActivity() {
+    lateinit var binding: ActivityAboutUsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingsBinding.inflate(layoutInflater)
-        setUpActionBar()
+        binding = ActivityAboutUsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setUpActionBar()
     }
-
 
     //отвечает за кнопку возврата в экшн баре
     private fun setUpActionBar() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.title = "Settings"
+        actionBar?.title = "About us"
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
