@@ -43,7 +43,7 @@ class SignInActivity : AppCompatActivity() {
             signInWithGoogle()
         }
         //
-        binding.button.setOnClickListener{
+        binding.registrationButton.setOnClickListener{
            //todo написать авторизацию другим способом
 
         }
