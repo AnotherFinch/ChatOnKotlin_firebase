@@ -25,7 +25,6 @@ import com.google.firebase.ktx.Firebase
 class MainActivity2 : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMain2Binding
-    private lateinit var contentMainBinding: ContentMainBinding
 
     lateinit var auth: FirebaseAuth
     lateinit var adapter: FriendAdapter
@@ -34,21 +33,7 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
         auth = Firebase.auth
-        println(auth.currentUser.toString())
-
-        //contentMainBinding = ContentMainBinding.inflate(layoutInflater)
-       // setContentView(contentMainBinding.root)
-        //initRe
-        // cycleView()
-
-//        contentMainBinding.buttonTestTest.setOnClickListener {
-//            val i = Intent(this, MainActivity::class.java)
-//            startActivity(i)
-//
-//        }
-
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
@@ -80,11 +65,5 @@ class MainActivity2 : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-    //проверка авторизации
 
-     private fun initRecycleView() = with(contentMainBinding) {
-            adapter = FriendAdapter()
-//            recyclerView2.layoutManager = LinearLayoutManager(this@MainActivity2)
-//            recyclerView2.adapter = adapter
-        }
 }

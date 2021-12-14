@@ -2,11 +2,14 @@ package com.example.chatonkotlinfirebase.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.chatonkotlinfirebase.R
 import com.example.chatonkotlinfirebase.data.Friend
 import com.example.chatonkotlinfirebase.data.User
+import com.example.chatonkotlinfirebase.databinding.FriendsListBinding
 import com.example.chatonkotlinfirebase.databinding.UserListItemBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -14,10 +17,15 @@ import com.google.firebase.auth.FirebaseAuth
 //todo разобраться до конца как этот класс работает
 class FriendAdapter : ListAdapter<Friend, FriendAdapter.ItemHolder>(ItemComparator()) {
 
-    class ItemHolder (private val binding: UserListItemBinding) : RecyclerView.ViewHolder(binding.root){
+    class ItemHolder (private val binding: FriendsListBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(friend: Friend) = with(binding){
             message.text = friend.message
             userName.text = friend.name
+
+          //  var imageView : ImageView = root.findViewById(R.id.iconFrend)
+
+//            iconFrend.draw=binding.findViewById(R.id.iconFrend)
+
             val userName : String = friend?.name.toString()
             val userRealName : String = FirebaseAuth.getInstance().currentUser?.displayName.toString()
             if (userRealName!=userName){
@@ -31,7 +39,7 @@ class FriendAdapter : ListAdapter<Friend, FriendAdapter.ItemHolder>(ItemComparat
 
         companion object{
             fun create(parent : ViewGroup) : ItemHolder {
-                return ItemHolder(UserListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                return ItemHolder(FriendsListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
         }
     }
