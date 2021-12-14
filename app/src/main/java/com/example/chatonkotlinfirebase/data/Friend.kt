@@ -4,5 +4,6 @@ import android.widget.ImageView
 
 data class Friend (
     val name : String? = null,
-    val message : String? = null
+    val message : String? = null,
+    val icon :  String? = null
 )

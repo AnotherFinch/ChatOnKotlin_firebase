@@ -1,5 +1,6 @@
 package com.example.chatonkotlinfirebase.adapter
 
+import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,15 +13,22 @@ import com.example.chatonkotlinfirebase.data.User
 import com.example.chatonkotlinfirebase.databinding.FriendsListBinding
 import com.example.chatonkotlinfirebase.databinding.UserListItemBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 
 //класс для работы с recycleView и заполнением его item (итемами)
 //todo разобраться до конца как этот класс работает
 class FriendAdapter : ListAdapter<Friend, FriendAdapter.ItemHolder>(ItemComparator()) {
 
     class ItemHolder (private val binding: FriendsListBinding) : RecyclerView.ViewHolder(binding.root){
+        lateinit var auth: FirebaseAuth
+
         fun bind(friend: Friend) = with(binding){
+            auth = Firebase.auth
             message.text = friend.message
             userName.text = friend.name
+
 
           //  var imageView : ImageView = root.findViewById(R.id.iconFrend)
 
@@ -33,7 +41,6 @@ class FriendAdapter : ListAdapter<Friend, FriendAdapter.ItemHolder>(ItemComparat
                 //todo понять как убрать текст вправо
                 //todo сейчас при переносе слов на другу строку меняется отступ у сообщения
                 binding.listLinearLayout.setBackgroundColor(0x79FF0266)
-
             }
         }
 
@@ -61,6 +68,4 @@ class FriendAdapter : ListAdapter<Friend, FriendAdapter.ItemHolder>(ItemComparat
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
-
 }

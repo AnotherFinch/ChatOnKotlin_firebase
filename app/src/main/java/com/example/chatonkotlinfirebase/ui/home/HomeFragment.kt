@@ -1,12 +1,10 @@
 package com.example.chatonkotlinfirebase.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,11 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatonkotlinfirebase.R
-import com.example.chatonkotlinfirebase.activity.MainActivity2
 import com.example.chatonkotlinfirebase.adapter.FriendAdapter
-import com.example.chatonkotlinfirebase.adapter.UserAdapter
 import com.example.chatonkotlinfirebase.data.Friend
-import com.example.chatonkotlinfirebase.data.User
 import com.example.chatonkotlinfirebase.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

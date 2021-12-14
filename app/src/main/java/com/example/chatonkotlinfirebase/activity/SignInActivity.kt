@@ -45,7 +45,7 @@ class SignInActivity : AppCompatActivity() {
         }
         //
         binding.registrationButton.setOnClickListener{
-            val i = Intent(this, MainActivity2::class.java)
+            val i = Intent(this, MainActivity::class.java)
             startActivity(i)
            //todo написать авторизацию другим способом
 
@@ -85,7 +85,7 @@ class SignInActivity : AppCompatActivity() {
     //метод открытия другого активити если авторизовался
     private fun checkAuthState(){
         if(auth.currentUser != null){
-            val i = Intent(this, MainActivity::class.java)
+            val i = Intent(this, ChatActivity::class.java)
             startActivity(i)
         }
     }
