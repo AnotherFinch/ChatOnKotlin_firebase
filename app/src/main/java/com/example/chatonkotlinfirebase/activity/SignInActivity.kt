@@ -1,13 +1,13 @@
-package com.example.chatonkotlinfirebase
+package com.example.chatonkotlinfirebase.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.chatonkotlinfirebase.R
 import com.example.chatonkotlinfirebase.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -44,7 +44,9 @@ class SignInActivity : AppCompatActivity() {
             signInWithGoogle()
         }
         //
-        binding.button.setOnClickListener{
+        binding.registrationButton.setOnClickListener{
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
            //todo написать авторизацию другим способом
 
         }
@@ -83,16 +85,16 @@ class SignInActivity : AppCompatActivity() {
     //метод открытия другого активити если авторизовался
     private fun checkAuthState(){
         if(auth.currentUser != null){
-            val i = Intent(this, MainActivity::class.java)
+            val i = Intent(this, ChatActivity::class.java)
             startActivity(i)
         }
     }
 
     //инициализация actionbar
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.sign_in_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.sign_in_menu, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.exit){

@@ -7,10 +7,21 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3140625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3140625" />
         <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.18020833333333333" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.1546875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1546875" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.16614583333333333" />
-        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.20471014492753623" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.16847826086956522" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.16847826086956522" />
+        <entry key="app/src/main/res/layout/frieds.xml" value="0.1546875" />
+        <entry key="app/src/main/res/layout/friends_list.xml" value="0.5290493332628693" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/user_list_item.xml" value="1.762669543988168" />
+        <entry key="app/src/main/res/menu/main_activity2.xml" value="0.1546875" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.2942708333333333" />
         <entry key="app/src/main/res/menu/sign_in_menu.xml" value="0.29791666666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17395833333333333" />
@@ -18,9 +29,6 @@
         <entry key="app/src/main/res/mipmap-mdpi/ic_launcher_foreground.xml" value="0.17395833333333333" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/another_user_list_item.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
