@@ -93,7 +93,7 @@ class ChatActivity : AppCompatActivity() {
                 //перелистывание вниз
                 //todo разобраться как перелистывать , когда выезжает клавиатура
                 //todo  при нуле ловит ошибку(в принципе при нуле проверка и не нужна)
-                if (list.size != 0){
+                if (list.size <=5 ){
                     binding.recyclerView.smoothScrollToPosition(
                         binding.recyclerView
                             .adapter?.itemCount!!.toInt() - 1

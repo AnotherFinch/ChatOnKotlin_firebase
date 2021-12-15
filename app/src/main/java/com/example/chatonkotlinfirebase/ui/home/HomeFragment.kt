@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         auth = Firebase.auth
 
         val database = Firebase.database
-        val myRef = database.getReference("message")
+        val myRef = database.getReference("message ${auth.currentUser?.displayName}")
 
         recyclerView = root.findViewById(R.id.recyclerView2)
 
