@@ -28,12 +28,6 @@ class FriendAdapter : ListAdapter<Friend, FriendAdapter.ItemHolder>(ItemComparat
             auth = Firebase.auth
             message.text = friend.message
             userName.text = friend.name
-
-
-          //  var imageView : ImageView = root.findViewById(R.id.iconFrend)
-
-//            iconFrend.draw=binding.findViewById(R.id.iconFrend)
-
             val userName : String = friend?.name.toString()
             val userRealName : String = FirebaseAuth.getInstance().currentUser?.displayName.toString()
             if (userRealName!=userName){
@@ -68,4 +62,7 @@ class FriendAdapter : ListAdapter<Friend, FriendAdapter.ItemHolder>(ItemComparat
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
+
+
 }

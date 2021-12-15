@@ -2,6 +2,7 @@ package com.example.chatonkotlinfirebase.activity
 
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -22,6 +23,11 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ChatActivity : AppCompatActivity() {
     lateinit var binding: ActivityChatBinding
@@ -35,11 +41,18 @@ class ChatActivity : AppCompatActivity() {
         setUpActionBar()
         setContentView(binding.root)
         val database = Firebase.database
-        val myRef = database.getReference("message")
+        // todo переделать к конкретной переписки, сейчас общая
+        val myRef = database.getReference("message ${auth.currentUser?.displayName}")
         //отвечает за отправку тектса в fireBase
         binding.buttonSend.setOnClickListener {
+            val currentDate: String = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+            val currentTime: String = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
             myRef.child(myRef.push().key ?: "Отсебятина")
-                .setValue(User(auth.currentUser?.displayName, binding.edMessage.text.toString()))
+                .setValue(User(auth.currentUser?.displayName, binding.edMessage.text.toString(), currentDate, currentTime))
+
+
+            var stringphone : String? = auth.currentUser?.phoneNumber
+            println(stringphone)
         }
         changeListener(myRef)
         initRecycleView()
@@ -79,7 +92,7 @@ class ChatActivity : AppCompatActivity() {
                 adapter.submitList(list)
                 //перелистывание вниз
                 //todo разобраться как перелистывать , когда выезжает клавиатура
-                //todo  при нуле ловит ошибку
+                //todo  при нуле ловит ошибку(в принципе при нуле проверка и не нужна)
                 if (list.size != 0){
                     binding.recyclerView.smoothScrollToPosition(
                         binding.recyclerView
@@ -123,7 +136,8 @@ class ChatActivity : AppCompatActivity() {
             //запуск на основном потоке
             runOnUiThread {
                 actionBar?.setDisplayHomeAsUpEnabled(true)
-               actionBar?.setHomeAsUpIndicator(drawableIcon)
+                //если убрать ,то вместо нее будет стрелка назад
+                 actionBar?.setHomeAsUpIndicator(drawableIcon)
                 actionBar?.title = auth.currentUser?.displayName
             }
         }.start()
@@ -133,4 +147,17 @@ class ChatActivity : AppCompatActivity() {
     private fun deleteMessageText(){
         binding.edMessage.setText("")
     }
+
+    ////
+//    private fun getCurrentTime(){
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val current = LocalDateTime.now()
+//            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss")
+//            var answer: String =  current.format(formatter)
+//        } else {
+//            var date = Date()
+//            val formatter = SimpleDateFormat("MMM dd yyyy HH:mma")
+//            val answer: String = formatter.format(date)
+//        }
+//    }
 }

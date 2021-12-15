@@ -18,6 +18,8 @@ class UserAdapter : ListAdapter<User, UserAdapter.ItemHolder>(ItemComparator()) 
         fun bind(user : User) = with(binding){
             message.text = user.message
             userName.text = user.name
+
+
             val userName : String = user?.name.toString()
                     val userRealName : String = FirebaseAuth.getInstance().currentUser?.displayName.toString()
                     if (userRealName!=userName){

@@ -43,7 +43,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         //todo тут будет список пользователей
-/////////////////проверка кнопки
         auth = Firebase.auth
 
         val database = Firebase.database
@@ -55,11 +54,11 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         changeListener(myRef)
-/////
         button = root.findViewById(R.id.buttonButton)
+
         button.setOnClickListener{
         }
-
+        //
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
@@ -71,13 +70,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    ///
-//    private fun initRecycleView(){
-//        adapter = FriendAdapter()
-//        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-//
-//        recyclerView.adapter = adapter
-//    }
 
     private fun changeListener(dRef: DatabaseReference) {
         dRef.addValueEventListener(object : ValueEventListener {

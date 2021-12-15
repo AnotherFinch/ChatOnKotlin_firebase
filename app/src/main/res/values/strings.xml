@@ -20,4 +20,5 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="welcome_to_the_corgi_chat">Welcome to the Corgi Chat</string>
 </resources>
